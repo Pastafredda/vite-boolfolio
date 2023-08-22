@@ -1,8 +1,16 @@
 <script>
 export default {
-
+    name: 'bookcard',
     props: {
-        books: Object
+        books: Object,
+        pages: Object
+    },
+    emits: ['page-clicked'],
+    methods: {
+        toPage(url) {
+
+            this.$emit('page-clicked', url)
+        }
     }
 
 }
@@ -10,33 +18,65 @@ export default {
 </script>
 
 <template>
-    <div>
-        <ul>
-            <li class="card" v-for="book in books" :key="book.id">{{ book.title }}</li>
-        </ul>
+    <div class="card">
+        <div class="info" v-for="book in books" :key="book.id">
+            <h2>{{ book.title }} </h2>
+        </div>
+
+    </div>
+    <div class="page">
+        <div class="number-page" v-for="(page, index) in  pages " :key="index" v-html="page.label" @click="toPage(page.url)"
+            :class="{
+                'd-none': page.url === null,
+                'active': page.active
+            }">
+        </div>
+
     </div>
 </template>
 
 <style scoped>
-ul {
+.card {
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 50px;
 }
 
-.card {
+.info {
     background-color: rgb(4, 109, 127);
-    margin: 10px;
+    margin: 20px;
     color: white;
-    height: 300px;
-    width: calc(100% / 11);
+    height: 200px;
+    width: 250px;
     text-align: center;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.number-page {
+    background-color: aquamarine;
+    margin: 6px;
+    padding: 8px;
+    border-radius: 20px;
+    font-size: 16px;
+
+}
+
+.d-none {
+    display: none;
+}
+
+.active {
+    background-color: rgb(4, 109, 127);
 }
 </style>
