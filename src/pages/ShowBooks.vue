@@ -39,6 +39,11 @@ export default {
                 <p>Autore: {{ book.author }}</p>
                 <p>Codice: {{ book.code }}</p>
                 <p>Disponibilità: {{ book.is_available }}</p>
+                <p>Genere: {{ book.type.name }}</p>
+                <div class="materiale">
+                    <p> <b>Materiale ulitizzato:</b> </p>
+                    <p v-for="technology in book.technologies">{{ technology.name }}</p>
+                </div>
             </div>
         </div>
         <div class="container-spinner" v-else>
@@ -96,6 +101,10 @@ img {
     max-width: 100%;
 }
 
+.materiale {
+    margin: 30px 0;
+    text-align: center;
+}
 
 
 h2 {
