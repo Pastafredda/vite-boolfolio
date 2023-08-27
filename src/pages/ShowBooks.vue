@@ -32,6 +32,9 @@ export default {
     <div class="container">
         <div class="card" v-if="!isLoading">
             <div class="info">
+                <div class="imaage">
+                    <img :src="'http://127.0.0.1:8000/storage/' + book.main_picture" :alt="book.title">
+                </div>
                 <h2>Titolo: {{ book.title }}</h2>
                 <p>Autore: {{ book.author }}</p>
                 <p>Codice: {{ book.code }}</p>
@@ -84,6 +87,16 @@ export default {
     padding: 20px;
     border-radius: 20px;
 }
+
+.image {
+    width: 80%;
+}
+
+img {
+    max-width: 100%;
+}
+
+
 
 h2 {
     margin: 20px;
